@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Frontend Mentor | Contact form</title>
+  </head>
+  <body>
+    <main>
+      <h1 class="title">Contact Us</h1>
+      <form action="" id="form" class="form_section">
+        <fieldset>
+          <div class="name_section">
+            <label for="firstname">First Name</label>
+            <input type="text" id="firstname" name="firstname" />
+          </div>
+          <div class="name_section">
+            <label for="lastname">Last Name</label>
+            <input type="text" id="lastname" name="lastname" />
+          </div>
+        </fieldset>
+
+        <label for="email_input">Email Address</label>
+        <input type="email" id="email_input" name="email" />
+        <fieldset>
+          <legend>Query Type</legend>
+          <div class="radio_btn_wrapper">
+            <div class="radio_btn"></div>
+            <img
+              src="assets/images/icon-radio-selected.svg"
+              alt="general enquiry selected"
+              class="selected"
+            />
+            <label for="">General Enquiry</label>
+          </div>
+          <div class="radio_btn_wrapper">
+            <div class="radio_btn"></div>
+            <img
+              src="assets/images/icon-radio-selected.svg"
+              alt="general enquiry selected"
+              class="selected"
+            />
+            <label for="">Support Request</label>
+          </div>
+        </fieldset>
+        <label for="">Message</label>
+        <textarea name="" id=""></textarea>
+        <div class="checkbox_wrapper">
+          <input type="checkbox" />
+          <label for="">I consent to being contacted by the team</label>
+        </div>
+        <!-- <p>
+            To submit this form, please consent to being contacted Submit
+            Message Sent!
+          </p> -->
+        <button type="submit">submit</button>
+      </form>
+      <!-- <div class="success_msg">
+        <div class="info">
+          <img
+            src="assets/images/icon-success-check.svg"
+            alt="success message icon"
+          />
+          <span>Message Sent</span>
+        </div>
+        <p>Thanks for completing the form. We'll be in touch soon!</p>
+      </div> -->
+    </main>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+:root {
+  --light_green: hsl(148, 38%, 91%);
+  --dark_green: hsl(169, 82%, 27%);
+  --very_dark_green: hsl(169, 82%, 19%);
+  --red: hsl(0, 66%, 54%);
+  --dark_grey: hsl(186, 15%, 59%);
+  --very_dark_grey: hsl(187, 24%, 22%);
+  --white: hsl(0, 0%, 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Karla;
+}
+
+body {
+  background-color: var(--light_green);
+}
+
+main {
+  width: 90%;
+  margin: 2rem auto;
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 1.1rem;
+}
+
+.title {
+  color: var(--very_dark_green);
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  border: none;
+}
+
+label {
+  margin: 10px 0 5px 0;
+}
+
+.radio_btn_wrapper,
+input,
+textarea {
+  padding: 10px 20px;
+  border: 1px solid var(--dark_grey);
+  border-radius: 7px;
+}
+
+legend {
+  margin-top: 20px;
+}
+
+.radio_btn_wrapper {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.radio_btn_wrapper label {
+  margin: 0;
+}
+
+.radio_btn {
+  width: 20px;
+  height: 21px;
+  border: 1px solid var(--light_green);
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.selected {
+  display: none;
+  margin-right: 10px;
+}
+
+.radio_btn:hover {
+  background-color: var(--light_green);
+}
+
+input:focus {
+  border: 1px solid var(--dark_green);
+  outline: none;
+}
+
+.checkbox_wrapper {
+  display: flex;
+}
+
+.checkbox_wrapper label {
+  padding: 0 20px;
+}
+
+.checkbox_wrapper input {
+  border: 3px solid var(--dark_grey);
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  height: 200px;
+  margin-top: 5px;
+}
+
+button {
+  padding: 16px 0;
+  margin-top: 25px;
+  background-color: var(--dark_green);
+  border: none;
+  color: var(--white);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--very_dark_green);
+}
+
+.success_msg {
+  background-color: red;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
+
+  main {
+    width: 691px;
+    margin: 0;
+    padding: 1.8rem;
+  }
+
+  form,
+  fieldset,
+  .name_section {
+    display: flex;
+  }
+
+  .name_section {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .radio_btn_wrapper {
+    width: 50%;
+  }
+
+  .name_section:nth-child(1),
+  .radio_btn_wrapper:nth-child(2) {
+    margin-right: 7.5px;
+  }
+  .name_section:nth-child(2),
+  .radio_btn_wrapper:nth-child(3) {
+    margin-left: 7.5px;
+  }
+
+  textarea {
+    resize: none;
+    height: 100px;
+    margin-top: 5px;
+  }
+}
