@@ -19,63 +19,102 @@
   <body>
     <main>
       <h1 class="title">Contact Us</h1>
-      <form action="" id="form" class="form_section">
+      <form action="" id="form" class="form_section" novalidate>
         <fieldset>
           <div class="name_section">
             <label for="firstname">First Name</label>
-            <input type="text" id="firstname" name="firstname" />
+            <input
+              type="text"
+              id="firstname"
+              name="firstname"
+              aria-describedby="firstname_error"
+            />
+            <span id="firstname_error" class="error_msg"
+              >This field is required</span
+            >
           </div>
           <div class="name_section">
             <label for="lastname">Last Name</label>
-            <input type="text" id="lastname" name="lastname" />
+            <input
+              type="text"
+              id="lastname"
+              name="lastname"
+              aria-describedby="lastname_error"
+            />
+            <span id="lastname_error" class="error_msg"
+              >This field is required</span
+            >
           </div>
         </fieldset>
 
         <label for="email_input">Email Address</label>
-        <input type="email" id="email_input" name="email" />
+        <input
+          type="email"
+          id="email_input"
+          name="email"
+          aria-describedby="email_error"
+          required
+        />
+        <span id="email_error" class="error_msg"
+          >Please enter a valid email address</span
+        >
+
         <fieldset>
           <legend>Query Type</legend>
           <div class="radio_btn_wrapper">
-            <div class="radio_btn"></div>
-            <img
-              src="assets/images/icon-radio-selected.svg"
-              alt="general enquiry selected"
-              class="selected"
+            <input
+              class="radio_btn"
+              type="radio"
+              name="radio1"
+              id="radio1"
+              value="General Enquiry"
             />
-            <label for="">General Enquiry</label>
+            <label for="radio1" id="radio1_text">General Enquiry</label>
           </div>
           <div class="radio_btn_wrapper">
-            <div class="radio_btn"></div>
-            <img
-              src="assets/images/icon-radio-selected.svg"
-              alt="general enquiry selected"
-              class="selected"
+            <input
+              class="radio_btn"
+              type="radio"
+              name="radio2"
+              id="radio2"
+              value="Support Request"
             />
-            <label for="">Support Request</label>
+            <label for="radio2" id="radio2_text">Support Request</label>
           </div>
         </fieldset>
-        <label for="">Message</label>
-        <textarea name="" id=""></textarea>
+        <span id="radio_btn_error" class="error_msg"
+          >Please select a query type</span
+        >
+        <label for="user_message">Message</label>
+        <textarea name="user_message" id="user_message"></textarea>
+        <span id="user_msg_error" class="error_msg"
+          >This field is required</span
+        >
         <div class="checkbox_wrapper">
-          <input type="checkbox" />
-          <label for="">I consent to being contacted by the team</label>
+          <input type="checkbox" id="checkbox_btn" />
+          <label for="checkbox_btn"
+            >I consent to being contacted by the team</label
+          >
         </div>
-        <!-- <p>
-            To submit this form, please consent to being contacted Submit
-            Message Sent!
-          </p> -->
-        <button type="submit">submit</button>
+        <span id="checkbox_error" class="error_msg">
+          To submit this form, please consent to being contacted Submit Message
+          Sent!
+        </span>
+        <button class="submit_btn">submit</button>
       </form>
-      <!-- <div class="success_msg">
-        <div class="info">
-          <img
-            src="assets/images/icon-success-check.svg"
-            alt="success message icon"
-          />
-          <span>Message Sent</span>
-        </div>
-        <p>Thanks for completing the form. We'll be in touch soon!</p>
-      </div> -->
     </main>
+    <div class="success_msg">
+      <div class="info">
+        <img
+          src="assets/images/icon-success-check.svg"
+          alt="success message icon"
+          width="18"
+          height="18"
+        />
+        <span>Message Sent!</span>
+      </div>
+      <p>Thanks for completing the form. We'll be in touch soon!</p>
+    </div>
+    <script src="main.js"></script>
   </body>
 </html>

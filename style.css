@@ -25,6 +25,7 @@ main {
   background-color: var(--white);
   border-radius: 10px;
   padding: 1.1rem;
+  position: relative;
 }
 
 .title {
@@ -51,6 +52,7 @@ textarea {
   padding: 10px 20px;
   border: 1px solid var(--dark_grey);
   border-radius: 7px;
+  font-size: 16px;
 }
 
 legend {
@@ -61,6 +63,11 @@ legend {
   margin: 10px 0;
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
+
+.active {
+  background-color: var(--light_green);
 }
 
 .radio_btn_wrapper label {
@@ -69,20 +76,17 @@ legend {
 
 .radio_btn {
   width: 20px;
-  height: 21px;
-  border: 1px solid var(--light_green);
+  height: 20px;
+  border: 1px solid var(--dark_grey);
   border-radius: 50%;
   margin-right: 10px;
   cursor: pointer;
+  accent-color: var(--dark_green);
 }
 
 .selected {
   display: none;
   margin-right: 10px;
-}
-
-.radio_btn:hover {
-  background-color: var(--light_green);
 }
 
 input:focus {
@@ -124,8 +128,42 @@ button:hover {
   background-color: var(--very_dark_green);
 }
 
+.error_msg {
+  color: var(--red);
+  padding-top: 10px;
+  display: none;
+}
+
 .success_msg {
-  background-color: red;
+  background-color: var(--very_dark_grey);
+  color: var(--white);
+  position: absolute;
+  z-index: 10;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem;
+  font-size: 14px;
+  border-radius: 7px;
+  display: none;
+}
+
+.success_msg .info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.success_msg .info img {
+  margin-right: 10px;
+}
+
+.success_msg p {
+  font-weight: 400;
+}
+
+.error_state {
+  border: 1px solid var(--red);
 }
 
 @media screen and (min-width: 768px) {
