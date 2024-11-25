@@ -17,6 +17,7 @@ const successMsg = document.querySelector(".success_msg");
 
 const isChecked = true;
 checkboxBtn.checked = false;
+let radioBtnValue = "";
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -30,11 +31,18 @@ form.addEventListener("submit", (e) => {
     if (!radioBtnValue) {
       radioBtnError.style.display = "block";
     } else {
+      radioBtnValue = "";
       radioBtnError.style.display = "none";
+      showSuccessMsg(radioBtnValue);
     }
-    successMsg.style.display = "block";
   }
 });
+
+function showSuccessMsg(dataInput) {
+  if (dataInput) {
+    successMsg.style.display = "block";
+  }
+}
 
 function emailValidation() {
   const emailValue = emailInput.value;
@@ -45,6 +53,7 @@ function emailValidation() {
     emailErrorMsg.style.display = "block";
     emailInput.classList.add("error_state");
   } else {
+    showSuccessMsg(emailInput.value);
     emailInput.value = "";
     emailErrorMsg.style.display = "none";
     emailInput.classList.remove("error_state");
@@ -61,6 +70,8 @@ function handleFormInputs() {
     firstName.classList.add("error_state");
     lastName.classList.add("error_state");
   } else {
+    showSuccessMsg(firstName.value);
+    showSuccessMsg(lastName.value);
     firstName.value = "";
     lastName.value = "";
     firstNameErrorMsg.style.display = "none";
@@ -69,8 +80,6 @@ function handleFormInputs() {
     lastName.classList.remove("error_state");
   }
 }
-
-let radioBtnValue = "";
 
 radioBtns.forEach((radioBtn) => {
   radioBtn.checked = false;
@@ -100,6 +109,7 @@ function handleTextArea() {
     userMsg.value = "";
     userMsgErrorMsg.style.display = "none";
     userMsg.classList.remove("error_state");
+    showSuccessMsg(userMsgValue);
   }
 }
 
@@ -107,3 +117,4 @@ emailInput.value = "";
 firstName.value = "";
 lastName.value = "";
 userMsg.value = "";
+radioBtnValue = "";

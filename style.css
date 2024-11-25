@@ -33,7 +33,8 @@ main {
   margin-bottom: 20px;
 }
 
-form {
+form,
+.name_section {
   display: flex;
   flex-direction: column;
 }
@@ -42,8 +43,12 @@ fieldset {
   border: none;
 }
 
+label:not(.checkbox_label) {
+  margin: 20px 0 5px 0;
+}
+
 label {
-  margin: 10px 0 5px 0;
+  color: var(--very_dark_grey);
 }
 
 .radio_btn_wrapper,
@@ -89,6 +94,7 @@ legend {
   margin-right: 10px;
 }
 
+textarea:focus,
 input:focus {
   border: 1px solid var(--dark_green);
   outline: none;
@@ -96,9 +102,10 @@ input:focus {
 
 .checkbox_wrapper {
   display: flex;
+  margin-top: 15px;
 }
 
-.checkbox_wrapper label {
+.checkbox_label {
   padding: 0 20px;
 }
 
@@ -166,6 +173,11 @@ button:hover {
   border: 1px solid var(--red);
 }
 
+.required {
+  color: var(--dark_green);
+  margin-left: 3px;
+}
+
 @media screen and (min-width: 768px) {
   body {
     display: flex;
@@ -208,5 +220,9 @@ button:hover {
     resize: none;
     height: 100px;
     margin-top: 5px;
+  }
+
+  .checkbox_wrapper {
+    margin-top: 25px;
   }
 }
