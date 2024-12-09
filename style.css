@@ -191,6 +191,7 @@ button:hover {
   main {
     width: 601px;
     margin: 0 auto;
+    padding: 1.8rem;
   }
 
   .title {
