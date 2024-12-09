@@ -1,120 +1,142 @@
-const radioBtns = document.querySelectorAll(".radio_btn");
-const form = document.getElementById("form");
-const submitBtn = document.querySelector(".submit_btn");
-const emailInput = document.getElementById("email_input");
-const emailErrorMsg = document.getElementById("email_error");
-const firstNameErrorMsg = document.getElementById("firstname_error");
-const lastNameErrorMsg = document.getElementById("lastname_error");
-const userMsgErrorMsg = document.getElementById("user_msg_error");
-const radioBtnError = document.getElementById("radio_btn_error");
-const checkboxError = document.getElementById("checkbox_error");
-const firstName = document.getElementById("firstname");
-const lastName = document.getElementById("lastname");
-const userMsg = document.getElementById("user_message");
-const radioBtnWrapper = document.querySelectorAll(".radio_btn_wrapper");
-const checkboxBtn = document.getElementById("checkbox_btn");
-const successMsg = document.querySelector(".success_msg");
+// DOM Elements
+const elements = {
+  radioBtns: document.querySelectorAll(".radio_btn"),
+  form: document.getElementById("form"),
+  submitBtn: document.querySelector(".submit_btn"),
+  emailInput: document.getElementById("email_input"),
+  emailErrorMsg: document.getElementById("email_error"),
+  firstNameErrorMsg: document.getElementById("firstname_error"),
+  lastNameErrorMsg: document.getElementById("lastname_error"),
+  userMsgErrorMsg: document.getElementById("user_msg_error"),
+  radioBtnError: document.getElementById("radio_btn_error"),
+  checkboxError: document.getElementById("checkbox_error"),
+  firstName: document.getElementById("firstname"),
+  lastName: document.getElementById("lastname"),
+  userMsg: document.getElementById("user_message"),
+  checkboxBtn: document.getElementById("checkbox_btn"),
+  successMsg: document.querySelector(".success_msg"),
+};
 
-const isChecked = true;
-checkboxBtn.checked = false;
+// Constants
+const isChecked = false;
 let radioBtnValue = "";
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (checkboxBtn.checked !== isChecked) {
-    checkboxError.style.display = "block";
-  } else {
-    checkboxError.style.display = "none";
-    emailValidation();
-    handleFormInputs();
-    handleTextArea();
-    if (!radioBtnValue) {
-      radioBtnError.style.display = "block";
-    } else {
-      radioBtnValue = "";
-      radioBtnError.style.display = "none";
-      showSuccessMsg(radioBtnValue);
-    }
-  }
-});
-
-function showSuccessMsg(dataInput) {
-  if (dataInput) {
-    successMsg.style.display = "block";
-  }
-}
-
-function emailValidation() {
-  const emailValue = emailInput.value;
-  const validation =
-    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-
-  if (!emailValue.match(validation)) {
-    emailErrorMsg.style.display = "block";
-    emailInput.classList.add("error_state");
-  } else {
-    showSuccessMsg(emailInput.value);
-    emailInput.value = "";
-    emailErrorMsg.style.display = "none";
-    emailInput.classList.remove("error_state");
-  }
-}
-
-function handleFormInputs() {
-  const inputFirstName = firstName.value;
-  const inputLastName = lastName.value;
-
-  if (!inputFirstName && !inputLastName) {
-    firstNameErrorMsg.style.display = "block";
-    lastNameErrorMsg.style.display = "block";
-    firstName.classList.add("error_state");
-    lastName.classList.add("error_state");
-  } else {
-    showSuccessMsg(firstName.value);
-    showSuccessMsg(lastName.value);
-    firstName.value = "";
-    lastName.value = "";
-    firstNameErrorMsg.style.display = "none";
-    lastNameErrorMsg.style.display = "none";
-    firstName.classList.remove("error_state");
-    lastName.classList.remove("error_state");
-  }
-}
-
-radioBtns.forEach((radioBtn) => {
+// Event Listeners
+elements.form.addEventListener("submit", handleSubmit);
+elements.radioBtns.forEach((radioBtn) => {
   radioBtn.checked = false;
-  radioBtnValidation(radioBtn);
+  addRadioBtnListener(radioBtn);
 });
 
-function radioBtnValidation(radioBtn) {
+// Functions
+function handleSubmit(event) {
+  event.preventDefault();
+
+  resetErrors();
+
+  if (!elements.checkboxBtn.checked) {
+    showError(elements.checkboxError);
+  } else {
+    validateForm();
+  }
+}
+
+function resetErrors() {
+  hideError(elements.checkboxError);
+  hideError(elements.radioBtnError);
+}
+
+function validateForm() {
+  validateEmail();
+  validateNameFields();
+  validateUserMessage();
+  validateRadioButtons();
+
+  if (radioBtnValue) {
+    showSuccessMsg(radioBtnValue);
+    resetForm();
+  }
+}
+
+function validateEmail() {
+  const emailValue = elements.emailInput.value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(emailValue)) {
+    showError(elements.emailErrorMsg, elements.emailInput);
+  } else {
+    hideError(elements.emailErrorMsg, elements.emailInput);
+    showSuccessMsg(emailValue);
+  }
+}
+
+function validateNameFields() {
+  const firstName = elements.firstName.value.trim();
+  const lastName = elements.lastName.value.trim();
+
+  if (!firstName) showError(elements.firstNameErrorMsg, elements.firstName);
+  else hideError(elements.firstNameErrorMsg, elements.firstName);
+
+  if (!lastName) showError(elements.lastNameErrorMsg, elements.lastName);
+  else hideError(elements.lastNameErrorMsg, elements.lastName);
+
+  if (firstName) showSuccessMsg(firstName);
+  if (lastName) showSuccessMsg(lastName);
+}
+
+function validateUserMessage() {
+  const message = elements.userMsg.value.trim();
+
+  if (!message) {
+    showError(elements.userMsgErrorMsg, elements.userMsg);
+  } else {
+    hideError(elements.userMsgErrorMsg, elements.userMsg);
+    showSuccessMsg(message);
+  }
+}
+
+function validateRadioButtons() {
+  if (!radioBtnValue) {
+    showError(elements.radioBtnError);
+  } else {
+    hideError(elements.radioBtnError);
+  }
+}
+
+function addRadioBtnListener(radioBtn) {
   radioBtn.addEventListener("click", () => {
-    radioBtns.forEach((btn) => {
+    elements.radioBtns.forEach((btn) => {
       btn.checked = false;
       btn.parentElement.style.backgroundColor = "var(--white)";
     });
 
     radioBtn.checked = true;
     radioBtnValue = radioBtn.value;
-    radioBtn.parentElement.style.backgroundColor = `var(--light_green)`;
+    radioBtn.parentElement.style.backgroundColor = "var(--light_green)";
   });
 }
 
-function handleTextArea() {
-  const userMsgValue = userMsg.value;
+function showError(errorElement, inputElement = null) {
+  errorElement.style.display = "block";
+  if (inputElement) inputElement.classList.add("error_state");
+}
 
-  if (!userMsgValue) {
-    userMsgErrorMsg.style.display = "block";
-    userMsg.classList.add("error_state");
-  } else {
-    userMsg.value = "";
-    userMsgErrorMsg.style.display = "none";
-    userMsg.classList.remove("error_state");
-    showSuccessMsg(userMsgValue);
+function hideError(errorElement, inputElement = null) {
+  errorElement.style.display = "none";
+  if (inputElement) inputElement.classList.remove("error_state");
+}
+
+function showSuccessMsg(data) {
+  if (data) {
+    elements.successMsg.style.display = "block";
+    console.log("Success:", data); // Optional: Log success data
   }
 }
 
-emailInput.value = "";
-firstName.value = "";
-lastName.value = "";
-userMsg.value = "";
-radioBtnValue = "";
+function resetForm() {
+  elements.emailInput.value = "";
+  elements.firstName.value = "";
+  elements.lastName.value = "";
+  elements.userMsg.value = "";
+  radioBtnValue = "";
+}

@@ -176,6 +176,7 @@ button:hover {
 .required {
   color: var(--dark_green);
   margin-left: 3px;
+  user-select: none;
 }
 
 @media screen and (min-width: 768px) {
