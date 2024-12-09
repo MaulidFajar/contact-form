@@ -17,18 +17,15 @@ const elements = {
   successMsg: document.querySelector(".success_msg"),
 };
 
-// Constants
 const isChecked = false;
 let radioBtnValue = "";
 
-// Event Listeners
 elements.form.addEventListener("submit", handleSubmit);
 elements.radioBtns.forEach((radioBtn) => {
   radioBtn.checked = false;
   addRadioBtnListener(radioBtn);
 });
 
-// Functions
 function handleSubmit(event) {
   event.preventDefault();
 
