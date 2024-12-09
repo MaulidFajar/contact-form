@@ -47,7 +47,8 @@ label:not(.checkbox_label) {
   margin: 20px 0 5px 0;
 }
 
-label {
+label,
+legend {
   color: var(--very_dark_grey);
 }
 
@@ -146,7 +147,7 @@ button:hover {
   color: var(--white);
   position: absolute;
   z-index: 10;
-  top: 0px;
+  top: 20px;
   display: flex;
   flex-direction: column;
   padding: 1.4rem;
@@ -179,7 +180,7 @@ button:hover {
   user-select: none;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
   body {
     display: flex;
     height: 100vh;
@@ -188,9 +189,18 @@ button:hover {
   }
 
   main {
-    width: 691px;
-    margin: 0;
-    padding: 1.8rem;
+    width: 601px;
+    margin: 0 auto;
+  }
+
+  .title {
+    color: var(--very_dark_green);
+    margin-bottom: 10px;
+  }
+
+  legend,
+  label:not(.checkbox_label):not(.radio_label) {
+    margin: 10px 0 5px 0;
   }
 
   form,
@@ -206,6 +216,7 @@ button:hover {
 
   .radio_btn_wrapper {
     width: 50%;
+    margin: 0;
   }
 
   .name_section:nth-child(1),
@@ -225,5 +236,34 @@ button:hover {
 
   .checkbox_wrapper {
     margin-top: 25px;
+  }
+
+  .error_msg {
+    color: var(--red);
+    padding-top: 5px;
+    display: none;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1367px) {
+  main {
+    width: 691px;
+    margin: 2rem auto;
+    padding: 1.8rem;
+  }
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+  legend,
+  label:not(.checkbox_label):not(.radio_label) {
+    margin: 20px 0 5px 0;
+  }
+
+  .error_msg {
+    padding-top: 10px;
+    font-size: 16px;
   }
 }
